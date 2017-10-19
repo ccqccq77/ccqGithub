@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profilesXml xmlns="http://maven.apache.org/PROFILES/1.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/PROFILES/1.0.0 http://maven.apache.org/xsd/profiles-1.0.0.xsd">
+    <profiles>
+        <profile>
+            <id>preproduction</id>
+            <properties>
+                <mvn.log.level>DEBUG</mvn.log.level>
+                <mvn.log.path>/export/Logs</mvn.log.path>
+                <!-- 入口函数定义 -->
+                <mvn.invoice.alias>o2o-ccq-pre</mvn.invoice.alias>
+
+                <!-- 降级方案 zk cache -->
+                <mvn.zookeeper.ip>10.191.95.124:2181</mvn.zookeeper.ip>
+                <zookeeper.index>prezk.o2o.jd.com/zk/host</zookeeper.index>
+                <mvn.zk.log.node>/switch/invoice/getLogLevel/logLevel</mvn.zk.log.node>
+                <mvn.conf>conf</mvn.conf>
+                <!--ump文件名称-->
+                <mvn.config.ump.file>spring-config-ump-pre.xml</mvn.config.ump.file>
+
+                <mvn.jdbc.driver>com.mysql.jdbc.Driver</mvn.jdbc.driver>
+                <mvn.jdbc.url>jdbc:mysql://localhost:3306/invoice</mvn.jdbc.url>
+                <mvn.jdbc.username>root</mvn.jdbc.username>
+                <mvn.jdbc.password>admin</mvn.jdbc.password>
+                <mvn.table.invoice.dbnum>2</mvn.table.invoice.dbnum>
+            </properties>
+        </profile>
+
+
+
+        <profile>
+            <id>production</id>
+            <properties>
+                <mvn.log.level>INFO</mvn.log.level>
+                <mvn.log.path>/export/Logs</mvn.log.path>
+                <!-- 入口函数定义 -->
+                <mvn.invoice.alias>o2o-ccq</mvn.invoice.alias>
+                <!-- 降级方案 zk cache -->
+                <mvn.zookeeper.ip>10.187.120.111:2181,10.187.120.117:2181,10.187.137.33:2181,10.191.0.222:2181,10.191.86.136:2181,10.191.86.137:2181,10.191.86.138:2181</mvn.zookeeper.ip>
+                <zookeeper.index>zk.o2o.jd.com/zk/host</zookeeper.index>
+                <!-- zk日志级别路径前缀 -->
+                <mvn.zk.log.node>/switch/invoice/getLogLevel/logLevel</mvn.zk.log.node>
+                <mvn.conf>conf/error</mvn.conf>
+
+                <!--ump文件名称-->
+                <mvn.config.ump.file>spring-config-ump.xml</mvn.config.ump.file>
+                <mvn.table.invoice.dbnum>2</mvn.table.invoice.dbnum>
+            </properties>
+        </profile>
+    </profiles>
+</profilesXml>

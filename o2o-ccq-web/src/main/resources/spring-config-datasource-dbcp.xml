@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <!-- sql Session factory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- mapper and resultmap configuration location -->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:mysql/**Mapper.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"></constructor-arg>
+    </bean>
+
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ccq"/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
+    </bean>-->
+
+    <bean id="dataSource" class="com.jd.o2o.ccq.dao.context.util.O2ODynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.Integer">
+                <!--<entry key="-1" value-ref="dataSourceVip"/> -->
+                <entry key="-1" value-ref="dataSourceS0"/>
+                <entry key="0" value-ref="dataSourceS0"/>
+                <entry key="1" value-ref="dataSourceS1"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="dataSourceS0"/>
+        <property name="dbNum" value="2"/>
+        <!--<property name="routingStrategy" ref="pinRoutingStrategy"/>-->
+    </bean>
+
+    <bean id="dataSourceS0" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ccq"/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
+    </bean>
+
+    <bean id="dataSourceS1" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ccqtest"/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
+    </bean>
+
+
+
+
+
+
+
+</beans>

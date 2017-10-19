@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/o2o-ccq-api/o2o-ccq-api.iml" filepath="$PROJECT_DIR$/o2o-ccq-api/o2o-ccq-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/o2o-ccq-dao/o2o-ccq-dao.iml" filepath="$PROJECT_DIR$/o2o-ccq-dao/o2o-ccq-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/o2o-ccq-domain/o2o-ccq-domain.iml" filepath="$PROJECT_DIR$/o2o-ccq-domain/o2o-ccq-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/o2o-ccq-service/o2o-ccq-service.iml" filepath="$PROJECT_DIR$/o2o-ccq-service/o2o-ccq-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/o2o-ccq-web/o2o-ccq-web.iml" filepath="$PROJECT_DIR$/o2o-ccq-web/o2o-ccq-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/o2o-platform-ccq.iml" filepath="$PROJECT_DIR$/o2o-platform-ccq.iml" />
+    </modules>
+  </component>
+</project>

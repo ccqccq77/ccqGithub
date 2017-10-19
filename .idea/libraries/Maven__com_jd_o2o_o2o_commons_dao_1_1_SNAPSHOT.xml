@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.jd.o2o:o2o-commons-dao:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/o2o/o2o-commons-dao/1.1-SNAPSHOT/o2o-commons-dao-1.1-20151103.084916-20.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/o2o/o2o-commons-dao/1.1-SNAPSHOT/o2o-commons-dao-1.1-20151103.084916-20-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/o2o/o2o-commons-dao/1.1-SNAPSHOT/o2o-commons-dao-1.1-20151103.084916-20-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

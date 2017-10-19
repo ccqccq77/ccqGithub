@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+    <!-- 设置使用注解的类所在的jar包 -->
+    <context:component-scan base-package="com.jd.o2o.ccq.web.controller"/>
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.jd.o2o.commons.springmvc.ext.convert.DateFormatter">
+                    <property name="format" value="yyyy-MM-dd HH:mm:ss"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+        <property name="dateFormat" ref="dateFormat">
+        </property>
+        <property name="serializationInclusion">
+            <util:constant static-field="org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion.NON_NULL"/>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <bean class="com.jd.o2o.commons.springmvc.ext.convert.CustomMappingJacksonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                        <value>application/javascript</value>
+                        <value>text/json</value>
+                        <value>text/javascript</value>
+                        <value>text/plain</value>
+                        <value>text/html</value>
+                    </list>
+                </property>
+                <property name="objectMapper" ref="objectMapper">
+                </property>
+                <property name="failOnUnknownProperties" value="false"/>
+            </bean>
+        </mvc:message-converters>
+        <mvc:argument-resolvers>
+            <bean class="com.jd.o2o.commons.springmvc.ext.method.annotation.RequestJsonParamMethodArgumentResolver">
+                <property name="objectMapper" ref="objectMapper"/>
+            </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="defaultContentType" value="text/html"/>
+        <!-- not by accept header -->
+        <property name="ignoreAcceptHeader" value="true"/>
+        <!-- by extension -->
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <!-- for application/json -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

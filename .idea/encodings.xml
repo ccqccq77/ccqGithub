@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/o2o-ccq-dao/src/main/java/com/jd/o2o/ccq/dao/context/util/DynamicDataSourceHolder.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-dao/src/main/java/com/jd/o2o/ccq/dao/context/util/O2ODynamicDataSource.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-dao/src/main/resources/mybatis-config.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-dao/src/main/resources/mysql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-domain/src/main/java/com/jd/o2o/ccq/domain/web/ExtendMobieClientContext.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-domain/src/main/java/com/jd/o2o/ccq/domain/web/Invoice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-domain/src/main/java/com/jd/o2o/ccq/domain/web/InvoiceReqWeb.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-web/src/main/java/com/jd/o2o/ccq/web/test/AStoreTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-web/src/main/java/com/jd/o2o/ccq/web/test/BStoreTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-web/src/main/java/com/jd/o2o/ccq/web/test/ParallelTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-web/src/main/java/com/jd/o2o/ccq/web/test/SimpleThreadPool.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/o2o-ccq-web/src/main/resources/spring-config-datasource-dbcp.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/profiles.xml" charset="UTF-8" />
+  </component>
+</project>

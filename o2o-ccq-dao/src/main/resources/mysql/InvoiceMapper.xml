@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="InvoiceMapper">
+    <resultMap id="invoiceMap" type="com.jd.o2o.ccq.domain.web.Invoice">
+        <result column="invoice_id" property="invoiceId" jdbcType="BIGINT"/>
+        <result column="pin" property="pin" jdbcType="VARCHAR"/>
+        <result column="jd_pin" property="jdPin" jdbcType="VARCHAR"/>
+        <result column="invoice_type" property="invoiceType" jdbcType="INTEGER"/>
+        <result column="title_type" property="titleType" jdbcType="INTEGER"/>
+        <result column="title_content" property="titleContent" jdbcType="VARCHAR"/>
+        <result column="tax_num" property="taxNum" jdbcType="VARCHAR"/>
+        <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="yn" property="yn" jdbcType="TINYINT"/>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        pin,invoice_type,title_type,title_content,tax_num,invoice_content,user_email,yn
+    </sql>
+    <!--（增）新建发票信息-->
+    <insert id="insertInvoice" parameterType="map">
+        insert into
+        pdjinvoice(invoice_id,pin,jd_pin,invoice_type,title_type,title_content,tax_num,invoice_content,user_email,yn)
+        values
+        (#{invoice.invoiceId,jdbcType=BIGINT},#{invoice.pin,jdbcType=VARCHAR},#{invoice.jdPin,jdbcType=VARCHAR},#{invoice.invoiceType,jdbcType=INTEGER},#{invoice.titleType,jdbcType=INTEGER},
+        #{invoice.titleContent,jdbcType=VARCHAR},#{invoice.taxNum,jdbcType=VARCHAR},#{invoice.invoiceContent,jdbcType=VARCHAR},
+        #{invoice.userEmail,jdbcType=VARCHAR},#{invoice.yn,jdbcType=TINYINT})
+    </insert>
+
+    <!--（增）新建发票信息-->
+    <!--<insert id="insertInvoice" parameterType="map">
+        insert into invoice(pin,invoice_type)
+        values (#{invoice.pin,jdbcType=VARCHAR},#{invoice.invoiceType,jdbcType=INTEGER})
+    </insert>-->
+
+    <!--<insert id="insertInvoice" parameterType="map">
+        insert into pdjinvoice(pin,invoice_type,title_type,title_content,tax_num,invoice_content,user_email,yn)
+        values (#{invoice.pin,jdbcType=VARCHAR},#{invoice.invoiceType,jdbcType=INTEGER},#{invoice.titleType,jdbcType=INTEGER},
+        #{invoice.titleContent,jdbcType=VARCHAR},#{invoice.taxNum,jdbcType=VARCHAR},#{invoice.invoiceContent,jdbcType=VARCHAR},
+        #{invoice.userEmail,jdbcType=VARCHAR},#{invoice.yn,jdbcType=TINYINT})
+    </insert>-->
+
+    <!--（删）删除发票信息-->
+    <select id="deleteInvoiceByPin" parameterType="map">
+        delete from invoice
+        where pin = #{pin,jdbcType=VARCHAR}
+    </select>
+
+    <!--（改）修改发票信息-->
+    <select id="updateInvoiceByPin" parameterType="map">
+        update invoice
+        set yn=1, update_time=now()
+        where pin = #{pin,jdbcType=VARCHAR} and
+    </select>
+
+    <!--（查）查找发票信息-->
+    <select id="getInvoiceByPin" resultMap="invoiceMap" parameterType="map">
+        select
+        <include refid="allColumn"/>
+        from invoice
+        where pin = #{pin,jdbcType=VARCHAR}
+    </select>
+
+
+   <!-- <insert id="createOrderProductTable" parameterType="map">
+    CREATE TABLE `pdjinvoice` (
+    `invoice_id` bigint(20) NOT NULL COMMENT '发票id',
+    `pin` varchar(50) DEFAULT NULL COMMENT '到家用户',
+    `jd_pin` varchar(50) DEFAULT NULL COMMENT '京东用户',
+    `invoice_type` int(11) DEFAULT NULL COMMENT '发票类型（0、增值税发票）',
+    `title_type` int(11) DEFAULT NULL COMMENT '抬头类型（0、个人；1、企业）',
+    `title_content` varchar(100) DEFAULT NULL COMMENT '抬头内容',
+    `tax_num` varchar(50) DEFAULT NULL COMMENT '税号',
+    `invoice_content` varchar(50) DEFAULT NULL COMMENT '发票内容',
+    `user_email` varchar(50) DEFAULT NULL COMMENT '用户邮箱',
+    `yn` tinyint(4) DEFAULT NULL COMMENT '删除标识（0、正常；1、删除）',
+    `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '时间戳',
+    `createTime` timestamp DEFAULT NULL COMMENT '创建发票时间',
+    PRIMARY KEY (`invoice_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  </insert>-->
+
+
+
+
+</mapper>
