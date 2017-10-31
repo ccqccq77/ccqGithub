@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 /**
  * Created by ccq on 2017/8/29.
  */
-/*测试git fetch*/
+/*测试git fetch    不测试啦*/
 @Controller
 @RequestMapping("/ccq")
 public class BaseController {
